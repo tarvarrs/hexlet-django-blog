@@ -1,2 +1,17 @@
-<h1>About blog</h1>
-<p>Django experiments on Hexlet</p>
+{% extends "base.html" %}
+
+{% block title %}
+Django experiments on Hexlet
+{% endblock %}
+
+{% block content %}
+<h1>
+    About blog
+</h1>
+<p>
+    Django experiments on Hexlet
+</p>
+<p>
+    {{ tags|join:', ' }}
+</p>
+{% endblock %}
