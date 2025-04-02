@@ -48,7 +48,6 @@ class ArticleFormCreateView(View):
             return redirect('article')
         return render(request, 'articles/create.html', {'form': form})
 
-
 class ArticleFormEditView(View):
 
     def get(self, request, *args, **kwargs):
@@ -66,3 +65,17 @@ class ArticleFormEditView(View):
             form.save()
             return redirect('article')
         return render(request, 'articles/update.html', {'form': form, 'article_id': article_id})
+
+class ArticleFormDeleteView(View):
+    # def get(self, request, *args, **kwargs):
+    #     article_id = kwargs.get('id')
+    #     article = Article.objects.get(id=article_id)
+    #     return render(request, 'articles/delete.html', {'article_id': article_id})
+
+    def post(self, request, *args, **kwargs):
+        article_id = kwargs.get('id')
+        article = Article.objects.get(id=article_id)
+        if article:
+            messages.success(request, "Статья успешно удалена.")
+            article.delete()
+        return redirect('article')
